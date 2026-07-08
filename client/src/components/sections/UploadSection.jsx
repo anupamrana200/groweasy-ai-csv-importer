@@ -1,15 +1,12 @@
 "use client";
 
 import UploadCard from "../upload/UploadCard";
-import useCsvUpload from "@/hooks/useCsvUpload";
 
-export default function UploadSection() {
-  const {
-    selectedFile,
-    handleFileSelect,
-    removeFile,
-  } = useCsvUpload();
-
+export default function UploadSection({
+  selectedFile,
+  handleFileSelect,
+  removeFile,
+}) {
   return (
     <UploadCard
       selectedFile={selectedFile}

@@ -1,11 +1,16 @@
 "use client";
 
-export default function DropZone({
-  onFileSelect,
-}) {
-  const handleChange = (e) => {
-    const file = e.target.files[0];
-    onFileSelect(file);
+export default function DropZone({ onFileSelect }) {
+  const handleChange = (event) => {
+    console.log("🔥 Input Changed");
+
+    const file = event.target.files[0];
+
+    console.log("Selected File:", file);
+
+    if (file) {
+      onFileSelect(file);
+    }
   };
 
   return (

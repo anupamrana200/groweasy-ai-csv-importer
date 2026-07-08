@@ -27,7 +27,7 @@ const workflow = [
 export default function Sidebar() {
   return (
     <aside className="w-64 rounded-2xl bg-white p-6 shadow-sm">
-      <h2 className="mb-6 text-lg font-semibold">
+      <h2 className="mb-6 text-lg font-bold text-slate-800">
         Workflow
       </h2>
 
@@ -45,7 +45,7 @@ export default function Sidebar() {
                 className="text-blue-600"
               />
 
-              <span className="font-medium">
+              <span className="font-medium text-slate-700">
                 {item.title}
               </span>
             </div>

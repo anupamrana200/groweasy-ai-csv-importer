@@ -1,0 +1,51 @@
+import Card from "../ui/Card";
+import SectionTitle from "../ui/SectionTitle";
+import PreviewTable from "../preview/PreviewTable";
+
+export default function PreviewSection({
+  parsedData,
+  headers,
+  isParsing,
+}) {
+  return (
+    <Card className="mt-6">
+      <SectionTitle
+        title="CSV Preview"
+        subtitle="Preview your uploaded CSV before importing."
+      />
+
+      {isParsing ? (
+        <p className="text-blue-600">
+          Parsing CSV...
+        </p>
+      ) : parsedData.length > 0 ? (
+      <div>
+
+        <div className="mb-6 flex items-center justify-between">
+
+          <p className="font-semibold text-green-600">
+            CSV Parsed Successfully ✅
+          </p>
+
+          <p className="text-sm text-slate-500">
+            {parsedData.length} Rows • {headers.length} Columns
+          </p>
+
+        </div>
+
+        <PreviewTable
+          headers={headers}
+          parsedData={parsedData}
+        />
+
+      </div>
+      ) : (
+        <div className="flex h-64 items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50">
+          <p className="text-slate-500">
+            No CSV uploaded yet.
+          </p>
+        </div>
+      )}
+    </Card>
+  );
+}

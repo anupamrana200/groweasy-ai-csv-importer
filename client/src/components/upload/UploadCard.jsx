@@ -20,18 +20,18 @@ export default function UploadCard({
         subtitle="Upload any CSV exported from Facebook, Google Ads, Excel, or any CRM."
       />
 
-      <div className="flex min-h-[280px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 transition hover:border-blue-500 hover:bg-blue-50">
+      <div className="flex min-h-[280px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-8 transition hover:border-blue-500 hover:bg-blue-50 hover:border-blue-500">
         
         <UploadCloud
           size={60}
           className="text-blue-600"
         />
 
-        <h3 className="mt-6 text-xl font-semibold">
+        <h3 className="mt-6 text-xl font-bold text-slate-800">
           Drag & Drop your CSV
         </h3>
 
-        <p className="mt-2 text-center text-slate-500">
+        <p className="mt-2 text-center text-slate-600">
           or click below to browse your files
         </p>
 
