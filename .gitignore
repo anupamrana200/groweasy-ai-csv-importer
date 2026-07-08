@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+
+# Environment variables
+.env
+**/.env
+
+# Next.js
+client/.next
+client/out
+
+# Uploads
+server/src/uploads/*
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
