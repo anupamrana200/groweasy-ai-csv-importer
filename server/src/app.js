@@ -1,6 +1,7 @@
 
 const express = require("express");
 const cors = require("cors");
+const aiRoutes = require("./routes/ai.routes");
 
 const importRoutes = require("./routes/import.routes");
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/import", importRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.json({

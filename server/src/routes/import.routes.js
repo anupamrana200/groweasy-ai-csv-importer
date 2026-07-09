@@ -1,21 +1,14 @@
 const express = require("express");
 
 const upload = require("../middleware/upload.middleware");
+const { importCsv } = require("../controllers/import.controller");
 
 const router = express.Router();
 
 router.post(
   "/",
   upload.single("csv"),
-  (req, res) => {
-
-    res.json({
-      success: true,
-
-      file: req.file,
-    });
-
-  }
+  importCsv
 );
 
 module.exports = router;
