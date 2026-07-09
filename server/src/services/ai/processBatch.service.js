@@ -1,24 +1,18 @@
-const buildPrompt = require("../../prompts/crmExtraction.prompt");
-const runAI = require("./aiManager.service");
-const validateAiResponse = require("../../validators/aiResponse.validator");
+const processWorkerPool = require("./workerPool.service");
 
-const processBatch = async (batch, analysis, provider = "auto") => {
-  const crmRecords = [];
+const processBatch = async (
+  batch,
+  analysis,
+  provider = "auto"
+) => {
 
-  for (const record of batch) {
-    const prompt = buildPrompt({
-      record,
-      analysis,
-    });
+  return await processWorkerPool({
+    records: batch,
+    analysis,
+    provider,
+    concurrency: 5,
+  });
 
-    const aiResult = await runAI(prompt, provider);
-
-    const crmRecord = validateAiResponse(aiResult.response);
-
-    crmRecords.push(crmRecord);
-  }
-
-  return crmRecords;
 };
 
 module.exports = processBatch;
