@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Card from "../ui/Card";
+import ProgressCard from "../progress/ProgressCard";
 
 export default function ImportAction({
   parsedData,
@@ -9,19 +10,22 @@ export default function ImportAction({
   isImporting,
   importResult,
   resetImport,
+  progress,
 }) {
   const hasData = parsedData.length > 0;
 
   const [provider, setProvider] = useState("auto");
 
-  // ============================
+  // ===========================
   // Import Completed
-  // ============================
+  // ===========================
   if (importResult) {
     return (
       <Card className="mt-6 border-green-200 bg-green-50">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+
           <div>
+
             <h3 className="text-lg font-semibold text-green-700">
               ✅ Import Completed Successfully
             </h3>
@@ -31,6 +35,7 @@ export default function ImportAction({
             </p>
 
             <div className="mt-4 space-y-1 text-sm text-slate-600">
+
               <p>
                 <strong>AI Provider:</strong>{" "}
                 {importResult.provider || "Auto"}
@@ -39,7 +44,9 @@ export default function ImportAction({
               <p>
                 <strong>Status:</strong> Success
               </p>
+
             </div>
+
           </div>
 
           <button
@@ -48,37 +55,29 @@ export default function ImportAction({
           >
             Import Another CSV
           </button>
+
         </div>
       </Card>
     );
   }
 
-  // ============================
-  // Import In Progress
-  // ============================
+  // ===========================
+  // Import Running
+  // ===========================
   if (isImporting) {
-    return (
-      <Card className="mt-6">
-        <div className="text-center">
-          <h3 className="text-lg font-semibold text-blue-700">
-            🤖 AI is Processing...
-          </h3>
-
-          <p className="mt-2 text-slate-600">
-            Please wait while we analyze your CSV and generate CRM records.
-          </p>
-        </div>
-      </Card>
-    );
+    return <ProgressCard progress={progress} />;
   }
 
-  // ============================
-  // Ready to Import
-  // ============================
+  // ===========================
+  // Ready To Import
+  // ===========================
   return (
     <Card className="mt-6">
+
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+
         <div>
+
           <h3 className="text-lg font-semibold text-slate-800">
             Ready to Import
           </h3>
@@ -88,9 +87,11 @@ export default function ImportAction({
               ? `${parsedData.length} records are ready for AI processing.`
               : "Upload a CSV to continue."}
           </p>
+
         </div>
 
         <div className="flex items-center gap-4">
+
           <select
             value={provider}
             onChange={(e) => setProvider(e.target.value)}
@@ -109,8 +110,11 @@ export default function ImportAction({
           >
             Confirm Import
           </button>
+
         </div>
+
       </div>
+
     </Card>
   );
 }

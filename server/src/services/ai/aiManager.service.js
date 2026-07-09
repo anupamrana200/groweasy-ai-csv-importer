@@ -17,20 +17,23 @@ const runAI = async (prompt, provider = "auto") => {
     };
   }
 
-  try {
-    return {
-      provider: "Gemini",
-      response: await generateWithGemini(prompt),
-    };
-  } catch (error) {
+ try {
+  return {
+    provider: "Gemini",
+    response: await generateWithGemini(prompt),
+  };
+} catch (error) {
 
-    console.log("Gemini failed. Falling back to OpenAI...");
+  console.error("❌ Gemini failed:");
+  console.error(error);
 
-    return {
-      provider: "OpenAI",
-      response: await generateWithOpenAI(prompt),
-      fallback: true,
-    };
+  console.log("🔄 Falling back to OpenAI...");
+
+  return {
+    provider: "OpenAI",
+    response: await generateWithOpenAI(prompt),
+    fallback: true,
+  };
   }
 };
 

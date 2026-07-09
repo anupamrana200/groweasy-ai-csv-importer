@@ -3,6 +3,7 @@ const normalizeRecords = require("../services/csv/normalizeRecords.service");
 
 const createBatches = require("../services/ai/batch.service");
 const processBatch = require("../services/ai/processBatch.service");
+const processAllBatches = require("../services/ai/processAllBatches.service");
 
 exports.importCsv = async (req, res) => {
   try {
@@ -38,18 +39,24 @@ exports.importCsv = async (req, res) => {
     };
 
     // Process only the first batch (for now)
-    const crmRecords = await processBatch(
-      batches[0],
-      analysis,
-      "auto"
-    );
+    console.time("Total AI Processing");
 
-    return res.status(200).json({
-      success: true,
-      provider: "auto",
-      totalRecords: crmRecords.length,
-      crmRecords,
-    });
+    const allCrmRecords =
+      await processAllBatches({
+        batches,
+        analysis,
+        provider: "auto",
+      });
+
+    console.timeEnd("Total AI Processing");
+
+  return res.status(200).json({
+    success: true,
+    provider: "auto",
+    totalRecords: allCrmRecords.length,
+    totalBatches: batches.length,
+    crmRecords: allCrmRecords,
+  });
 
   } catch (error) {
 

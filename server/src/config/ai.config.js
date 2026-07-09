@@ -13,7 +13,15 @@ module.exports = {
     },
   },
 
-  batchSize: 50,
+  // AI Batch Settings
+  batchSize: 5,
 
+  // Maximum batches processed simultaneously
+  maxConcurrentBatches: 5,
+
+  // Retry failed AI requests
   maxRetries: 2,
+
+  // Request timeout (milliseconds)
+  requestTimeout: 30000,
 };

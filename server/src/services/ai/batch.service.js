@@ -1,8 +1,16 @@
-const createBatches = (records, batchSize = 50) => {
+const aiConfig = require("../../config/ai.config");
+
+const createBatches = (records) => {
   const batches = [];
 
-  for (let i = 0; i < records.length; i += batchSize) {
-    batches.push(records.slice(i, i + batchSize));
+  for (
+    let i = 0;
+    i < records.length;
+    i += aiConfig.batchSize
+  ) {
+    batches.push(
+      records.slice(i, i + aiConfig.batchSize)
+    );
   }
 
   return batches;
