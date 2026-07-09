@@ -12,6 +12,8 @@ export default function UploadCard({
   selectedFile,
   handleFileSelect,
   removeFile,
+  handleImport,
+  isImporting,
 }) {
   return (
     <Card>
