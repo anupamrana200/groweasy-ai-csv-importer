@@ -1,8 +1,12 @@
 "use client";
 
+import { importCsv } from "@/services/import.service";
 import { useState } from "react";
 import Papa from "papaparse";
 import { toast } from "sonner";
+const [crmRecords, setCrmRecords] = useState([]);
+const [isImporting, setIsImporting] = useState(false);
+const [importResult, setImportResult] = useState(null);
 
 export default function useCsvUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -81,6 +85,27 @@ export default function useCsvUpload() {
     setHeaders([]);
     setParseError(null);
   };
+
+  const handleImport = async () => {
+  if (!selectedFile) return;
+
+  try {
+    setIsImporting(true);
+
+    const formData = new FormData();
+    formData.append("csv", selectedFile);
+
+    const result = await importCsv(formData);
+
+    setImportResult(result);
+    setCrmRecords(result.crmRecords || []);
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setIsImporting(false);
+  }
+};
 
   return {
     selectedFile,
