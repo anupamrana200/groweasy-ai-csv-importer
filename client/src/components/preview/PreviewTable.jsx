@@ -1,61 +1,121 @@
+"use client";
+
+import Card from "../ui/Card";
+
 export default function PreviewTable({
   headers,
   parsedData,
 }) {
   return (
-    <div className="overflow-auto rounded-xl border border-slate-200">
-      <table className="min-w-full border-collapse">
+    <Card className="overflow-hidden">
 
-        <thead className="sticky top-0 bg-slate-100 text-slate-700">
+      <div
+        className="
+          w-full
+          overflow-auto
+          rounded-2xl
+          border
+          border-slate-200
+          max-h-[600px]
+        "
+      >
 
-          <tr>
+        <table
+          className="
+            w-full
+            min-w-[1200px]
+            border-collapse
+          "
+        >
 
-            <th className="border-b p-3 text-left whitespace-nowrap font-semibold text-slate-700">
-              #
-            </th>
+          <thead className="sticky top-0 z-20 bg-slate-100 shadow-sm">
 
-            {headers.map((header) => (
-              <th
-                key={header}
-                className="border-b p-3 text-left whitespace-nowrap font-semibold text-slate-700"
-              >
-                {header}
+            <tr>
+
+              <th className="
+                    border-b
+                    border-slate-200
+                    bg-slate-100
+                    px-4
+                    py-4
+                    text-left
+                    text-sm
+                    font-bold
+                    text-slate-900
+                    whitespace-nowrap
+                    ">
+                #
               </th>
-            ))}
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {parsedData.map((row, index) => (
-
-            <tr
-              key={index}
-              className="hover:bg-blue-50 transition-colors"
-            >
-
-              <td className="border-b p-3 whitespace-nowrap text-slate-700">
-                {index + 1}
-              </td>
 
               {headers.map((header) => (
-                <td
+
+                <th
                   key={header}
-                  className="border-b p-3 whitespace-nowrap text-slate-700"
+                  className="
+                    border-b
+                    border-slate-200
+                    bg-slate-100
+                    px-4
+                    py-4
+                    text-left
+                    text-sm
+                    font-bold
+                    text-slate-900
+                    whitespace-nowrap
+                    "
                 >
-                  {row[header]}
-                </td>
+                  {header}
+                </th>
+
               ))}
 
             </tr>
 
-          ))}
+          </thead>
 
-        </tbody>
+          <tbody>
 
-      </table>
-    </div>
+            {parsedData.map((row, index) => (
+
+              <tr
+                  key={index}
+                  className={`
+                    transition-colors
+                    hover:bg-blue-50
+
+                    ${
+                      index % 2 === 0
+                        ? "bg-white"
+                        : "bg-slate-50/50"
+                    }
+                  `}
+                >
+
+                <td className="border-b border-slate-200 px-4 py-3 whitespace-nowrap text-sm font-medium text-slate-800">
+                  {index + 1}
+                </td>
+
+                {headers.map((header) => (
+
+                  <td
+                    key={header}
+                    className="border-b border-slate-200 px-4 py-3 whitespace-nowrap text-sm font-medium text-slate-800"
+                  >
+                    {row[header]}
+                  </td>
+
+                ))}
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </Card>
   );
 }

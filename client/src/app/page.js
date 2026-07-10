@@ -3,9 +3,16 @@
 import MainLayout from "@/components/layout/MainLayout";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
+
+import DashboardHero from "@/components/dashboard/DashboardHero";
+import QuickStats from "@/components/dashboard/QuickStats";
+
 import UploadSection from "@/components/sections/UploadSection";
 import PreviewSection from "@/components/sections/PreviewSection";
 import ImportAction from "@/components/import/ImportAction";
+
+import PageContainer from "@/components/ui/PageContainer";
+import Section from "@/components/ui/Section";
 
 import useCsvUpload from "@/hooks/useCsvUpload";
 import useImportProgress from "@/hooks/useImportProgress";
@@ -29,7 +36,6 @@ export default function Home() {
     resetImport,
   } = useCsvUpload();
 
-  // Live Progress
   const progress = useImportProgress(isImporting);
 
   const workflowState = {
@@ -44,37 +50,73 @@ export default function Home() {
     <MainLayout>
       <Header />
 
-      <div className="mx-auto flex max-w-7xl gap-6 p-6">
+      <PageContainer>
 
-        <Sidebar workflowState={workflowState} />
+        <div
+          className="
+            flex
+            min-w-0
+            flex-col
+            gap-8
+            lg:flex-row
+            lg:items-start
+          "
+        >
+          <Sidebar workflowState={workflowState} />
 
-        <main className="flex-1 rounded-2xl bg-white p-10 shadow-sm">
+          <main
+            className="
+              flex-1
+              min-w-0
+              overflow-hidden
+              space-y-8
+            "
+          >
+            <Section>
+              <DashboardHero />
+            </Section>
 
-          <UploadSection
-            selectedFile={selectedFile}
-            handleFileSelect={handleFileSelect}
-            removeFile={removeFile}
-          />
+            <Section>
+              <QuickStats
+                selectedFile={selectedFile}
+                parsedData={parsedData}
+                isImporting={isImporting}
+                importResult={importResult}
+              />
+            </Section>
 
-          <PreviewSection
-            parsedData={parsedData}
-            headers={headers}
-            isParsing={isParsing}
-            crmRecords={crmRecords}
-          />
+            <Section>
+              <UploadSection
+                selectedFile={selectedFile}
+                handleFileSelect={handleFileSelect}
+                removeFile={removeFile}
+              />
+            </Section>
 
-          <ImportAction
-            parsedData={parsedData}
-            handleImport={handleImport}
-            isImporting={isImporting}
-            importResult={importResult}
-            resetImport={resetImport}
-            progress={progress}
-          />
+            <Section>
+              <PreviewSection
+                parsedData={parsedData}
+                headers={headers}
+                isParsing={isParsing}
+                crmRecords={crmRecords}
+              />
+            </Section>
 
-        </main>
+            <Section>
+              <ImportAction
+                parsedData={parsedData}
+                handleImport={handleImport}
+                isImporting={isImporting}
+                importResult={importResult}
+                resetImport={resetImport}
+                progress={progress}
+              />
+            </Section>
 
-      </div>
+          </main>
+        </div>
+
+      </PageContainer>
     </MainLayout>
   );
 }
