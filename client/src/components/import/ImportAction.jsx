@@ -6,7 +6,7 @@ import {
   Database,
   BrainCircuit,
   CheckCircle2,
- Clock3,
+  Clock3,
 } from "lucide-react";
 
 import Card from "../ui/Card";
@@ -42,20 +42,20 @@ export default function ImportAction({
 
             <div className="flex items-center gap-3">
 
-              <div className="rounded-2xl bg-green-100 p-3">
+              <div className="rounded-2xl bg-green-100 p-3 dark:bg-green-900/30">
                 <CheckCircle2
-                  className="text-green-600"
+                  className="text-green-600 dark:text-green-400"
                   size={28}
                 />
               </div>
 
               <div>
 
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                   Import Completed
                 </h2>
 
-                <p className="mt-1 text-slate-500">
+                <p className="mt-1 text-slate-500 dark:text-slate-400">
                   Your CSV has been successfully converted into CRM-ready records.
                 </p>
 
@@ -141,11 +141,11 @@ export default function ImportAction({
 
         <div>
 
-          <h2 className="text-xl font-bold text-slate-900">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">
             Ready to Import
           </h2>
 
-          <p className="mt-2 text-slate-500">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             {hasData
               ? `${parsedData.length} records are ready for AI processing.`
               : "Upload a CSV file to begin AI processing."}
@@ -161,21 +161,26 @@ export default function ImportAction({
             disabled={!hasData}
             className="
               rounded-xl
+
               border
               border-slate-300
+
               bg-white
+
               px-4
               py-3
 
               text-sm
               font-medium
+
               text-slate-800
 
               shadow-sm
 
               outline-none
 
-              transition
+              transition-all
+              duration-200
 
               focus:border-blue-500
               focus:ring-2
@@ -183,7 +188,15 @@ export default function ImportAction({
 
               disabled:bg-slate-100
               disabled:text-slate-400
-          "
+
+              dark:border-slate-700
+              dark:bg-slate-900
+              dark:text-slate-100
+              dark:focus:border-blue-400
+              dark:focus:ring-blue-900
+              dark:disabled:bg-slate-800
+              dark:disabled:text-slate-500
+            "
           >
             <option value="auto">
               Auto Detect
@@ -196,6 +209,7 @@ export default function ImportAction({
             <option value="openai">
               OpenAI GPT
             </option>
+
           </select>
 
           <Button

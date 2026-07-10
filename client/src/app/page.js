@@ -17,6 +17,8 @@ import Section from "@/components/ui/Section";
 import useCsvUpload from "@/hooks/useCsvUpload";
 import useImportProgress from "@/hooks/useImportProgress";
 
+import Footer from "@/components/layout/Footer";
+
 export default function Home() {
   const {
     selectedFile,
@@ -117,6 +119,7 @@ export default function Home() {
         </div>
 
       </PageContainer>
+      <Footer />
     </MainLayout>
   );
 }

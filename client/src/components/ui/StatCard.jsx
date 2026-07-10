@@ -15,17 +15,40 @@ export default function StatCard({
 
         <div>
 
-          <p className="text-sm text-slate-500">
+          <p
+            className="
+              text-sm
+              text-slate-500
+
+              dark:text-slate-400
+            "
+          >
             {label}
           </p>
 
-          <h3 className="mt-2 text-3xl font-bold text-slate-900">
+          <h3
+            className="
+              mt-2
+
+              text-3xl
+              font-bold
+
+              text-slate-900
+
+              dark:text-white
+            "
+          >
             {value}
           </h3>
 
         </div>
 
-        <div className={`text-3xl ${color}`}>
+        <div
+          className={`
+            text-3xl
+            ${color}
+          `}
+        >
           {icon}
         </div>
 

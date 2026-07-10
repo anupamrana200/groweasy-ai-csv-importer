@@ -64,30 +64,35 @@ export default function DropZone({ onFileSelect }) {
         onDrop={handleDrop}
         className={`
           cursor-pointer
-
           rounded-2xl
-
           border-2
-
           border-dashed
 
           transition-all
-
           duration-300
 
           ${
             dragging
               ? `
                 scale-[1.02]
-                border-blue-600
+                border-blue-500
                 bg-blue-50
-                shadow-lg
+                shadow-xl
+
+                dark:border-blue-400
+                dark:bg-blue-950/30
               `
               : `
                 border-slate-300
                 bg-white
+
                 hover:border-blue-500
                 hover:bg-blue-50
+
+                dark:border-slate-700
+                dark:bg-slate-900
+                dark:hover:border-blue-500
+                dark:hover:bg-slate-800
               `
           }
 
@@ -103,29 +108,47 @@ export default function DropZone({ onFileSelect }) {
       >
         {dragging ? (
           <FileUp
-            size={70}
-            className="animate-bounce text-blue-600"
+            size={72}
+            className="animate-bounce text-blue-500"
           />
         ) : (
           <UploadCloud
-            size={70}
-            className="text-blue-600"
+            size={72}
+            className="text-blue-500"
           />
         )}
 
-        <h3 className="mt-6 text-2xl font-bold text-slate-900">
+        <h3 className="mt-6 text-2xl font-bold text-slate-900 dark:text-white">
           {dragging
             ? "Drop your CSV here"
             : "Drag & Drop your CSV"}
         </h3>
 
-        <p className="mt-2 text-center text-slate-500">
+        <p className="mt-2 text-center text-slate-500 dark:text-slate-400">
           {dragging
             ? "Release to upload"
             : "or click to browse files"}
         </p>
 
-        <div className="mt-6 rounded-xl bg-slate-100 px-5 py-2 text-sm font-medium text-slate-700">
+        <div
+          className="
+            mt-6
+            rounded-xl
+
+            bg-slate-100
+
+            px-5
+            py-2
+
+            text-sm
+            font-medium
+
+            text-slate-700
+
+            dark:bg-slate-800
+            dark:text-slate-300
+          "
+        >
           CSV only • Max 25 MB
         </div>
       </div>

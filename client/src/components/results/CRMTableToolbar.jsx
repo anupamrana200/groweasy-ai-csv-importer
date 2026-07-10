@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, Download } from "lucide-react";
+
 import Button from "../ui/Button";
 
 export default function CRMTableToolbar({
@@ -9,15 +10,27 @@ export default function CRMTableToolbar({
   total,
 }) {
   return (
-    <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <div
+      className="
+        mb-6
+
+        flex
+        flex-col
+        gap-4
+
+        lg:flex-row
+        lg:items-center
+        lg:justify-between
+      "
+    >
 
       <div>
 
-        <h2 className="text-xl font-bold text-slate-900">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
           CRM Records
         </h2>
 
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           Showing {total} imported records
         </p>
 
@@ -28,8 +41,16 @@ export default function CRMTableToolbar({
         <div className="relative">
 
           <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
             size={18}
+            className="
+              absolute
+              left-3
+              top-1/2
+              -translate-y-1/2
+
+              text-slate-400
+              dark:text-slate-500
+            "
           />
 
           <input
@@ -39,9 +60,12 @@ export default function CRMTableToolbar({
             placeholder="Search by name, email, city..."
             className="
               w-full
+
               rounded-xl
+
               border
               border-slate-300
+
               bg-white
 
               py-2.5
@@ -50,6 +74,7 @@ export default function CRMTableToolbar({
 
               text-sm
               font-medium
+
               text-slate-800
 
               placeholder:text-slate-400
@@ -57,23 +82,33 @@ export default function CRMTableToolbar({
               shadow-sm
 
               outline-none
+
               transition-all
 
               focus:border-blue-500
               focus:ring-2
               focus:ring-blue-200
+
+              dark:border-slate-700
+              dark:bg-slate-900
+              dark:text-slate-100
+              dark:placeholder:text-slate-500
+              dark:focus:border-blue-400
+              dark:focus:ring-blue-900
             "
           />
 
         </div>
 
         <Button variant="secondary">
+
           <Download
             size={18}
             className="mr-2"
           />
 
           Export
+
         </Button>
 
       </div>

@@ -11,7 +11,7 @@ export default function StatusBadge({ status }) {
   ) {
     return (
       <Badge variant="success">
-        {status}
+        {status || "Qualified"}
       </Badge>
     );
   }
@@ -22,17 +22,29 @@ export default function StatusBadge({ status }) {
   ) {
     return (
       <Badge variant="warning">
-        {status}
+        {status || "Pending"}
       </Badge>
     );
   }
 
   if (
     value.includes("invalid") ||
-    value.includes("failed")
+    value.includes("failed") ||
+    value.includes("rejected")
   ) {
     return (
       <Badge variant="danger">
+        {status || "Failed"}
+      </Badge>
+    );
+  }
+
+  if (
+    value.includes("processing") ||
+    value.includes("running")
+  ) {
+    return (
+      <Badge variant="info">
         {status}
       </Badge>
     );

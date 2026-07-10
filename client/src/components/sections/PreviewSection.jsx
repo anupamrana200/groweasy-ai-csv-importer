@@ -17,39 +17,25 @@ export default function PreviewSection({
   isParsing,
   crmRecords,
 }) {
-  // ============================
-  // Loading
-  // ============================
-
   if (isParsing) {
     return (
-      <Card>
-
+      <Card hover>
         <SectionTitle
           title="CSV Preview"
           subtitle="Parsing your CSV..."
         />
 
         <div className="space-y-4">
-
           <LoadingSkeleton className="h-12 w-full" />
-
           <LoadingSkeleton className="h-80 w-full" />
-
         </div>
-
       </Card>
     );
   }
 
-  // ============================
-  // Empty
-  // ============================
-
   if (!parsedData.length) {
     return (
-      <Card>
-
+      <Card hover>
         <SectionTitle
           title="CSV Preview"
           subtitle="Preview your uploaded CSV before importing."
@@ -60,21 +46,14 @@ export default function PreviewSection({
           title="No CSV Uploaded"
           description="Upload a CSV file to preview its contents before AI processing."
         />
-
       </Card>
     );
   }
 
-  // ============================
-  // Preview
-  // ============================
-
   return (
     <div className="space-y-8">
 
-      {/* Preview Card */}
-
-      <Card>
+      <Card hover>
 
         <SectionTitle
           title="CSV Preview"
@@ -83,11 +62,11 @@ export default function PreviewSection({
 
         <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
 
-          <p className="font-semibold text-green-600">
+          <p className="font-semibold text-green-600 dark:text-green-400">
             CSV Parsed Successfully ✅
           </p>
 
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             {parsedData.length} Rows • {headers.length} Columns
           </p>
 
@@ -100,11 +79,9 @@ export default function PreviewSection({
 
       </Card>
 
-      {/* CRM Preview */}
-
       {crmRecords.length > 0 && (
 
-        <Card>
+        <Card hover>
 
           <SectionTitle
             title="AI CRM Preview"

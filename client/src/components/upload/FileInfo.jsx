@@ -20,25 +20,45 @@ export default function FileInfo({
     <div
       className="
         mt-6
+
         flex
         flex-col
         gap-4
+
         rounded-2xl
+
         border
+
         border-green-200
         bg-green-50
+
         p-5
+
+        transition-colors
 
         md:flex-row
         md:items-center
         md:justify-between
+
+        dark:border-green-900
+        dark:bg-green-950/20
       "
     >
       <div className="flex items-center gap-4">
 
-        <div className="rounded-xl bg-green-100 p-3">
+        <div
+          className="
+            rounded-xl
+
+            bg-green-100
+
+            p-3
+
+            dark:bg-green-900/40
+          "
+        >
           <FileSpreadsheet
-            className="text-green-600"
+            className="text-green-600 dark:text-green-400"
             size={28}
           />
         </div>
@@ -47,19 +67,19 @@ export default function FileInfo({
 
           <div className="flex items-center gap-2">
 
-            <h4 className="font-semibold text-slate-900">
+            <h4 className="font-semibold text-slate-900 dark:text-white">
               {file.name}
             </h4>
 
             <CheckCircle2
               size={18}
-              className="text-green-600"
+              className="text-green-600 dark:text-green-400"
             />
 
           </div>
 
-          <p className="text-sm text-slate-500">
-            {(size)} MB • Ready for import
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            {size} MB • Ready for import
           </p>
 
         </div>
@@ -70,15 +90,11 @@ export default function FileInfo({
         variant="danger"
         size="sm"
         onClick={onRemove}
+        className="flex items-center gap-2"
       >
-        <Trash2
-          size={16}
-          className="mr-2"
-        />
-
-        Remove
+        <Trash2 size={16} />
+        <span>Remove</span>
       </Button>
-
     </div>
   );
 }
