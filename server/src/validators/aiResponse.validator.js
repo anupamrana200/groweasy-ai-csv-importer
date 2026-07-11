@@ -21,11 +21,34 @@ const validateBatchResponse = (
   responseText,
   expectedRecords
 ) => {
+  // =====================================
+  // Clean AI response before parsing JSON
+  // =====================================
+
+  let cleaned = responseText.trim();
+
+  // Remove markdown code fences
+  cleaned = cleaned
+    .replace(/```json/gi, "")
+    .replace(/```/g, "")
+    .trim();
+
+  // Extract only the JSON array if extra text exists
+  const firstBracket = cleaned.indexOf("[");
+  const lastBracket = cleaned.lastIndexOf("]");
+
+  if (firstBracket !== -1 && lastBracket !== -1) {
+    cleaned = cleaned.substring(firstBracket, lastBracket + 1);
+  }
+
   let parsed;
 
   try {
-    parsed = JSON.parse(responseText);
-  } catch {
+    parsed = JSON.parse(cleaned);
+  } catch (error) {
+    console.error("Failed to parse AI response:");
+    console.error(cleaned);
+
     throw new Error("AI returned invalid JSON.");
   }
 
@@ -42,24 +65,19 @@ const validateBatchResponse = (
   const seenRowIds = new Set();
 
   parsed.forEach((record, index) => {
-
     if (!record._meta) {
       throw new Error(
         `Record ${index + 1} is missing _meta.`
       );
     }
 
-    if (
-      typeof record._meta.rowId !== "number"
-    ) {
+    if (typeof record._meta.rowId !== "number") {
       throw new Error(
         `Record ${index + 1} has an invalid rowId.`
       );
     }
 
-    if (
-      seenRowIds.has(record._meta.rowId)
-    ) {
+    if (seenRowIds.has(record._meta.rowId)) {
       throw new Error(
         `Duplicate rowId ${record._meta.rowId}.`
       );
@@ -68,17 +86,12 @@ const validateBatchResponse = (
     seenRowIds.add(record._meta.rowId);
 
     REQUIRED_FIELDS.forEach((field) => {
-
       if (!(field in record)) {
-
         throw new Error(
           `Record ${record._meta.rowId} is missing "${field}".`
         );
-
       }
-
     });
-
   });
 
   return parsed;
