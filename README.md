@@ -1,24 +1,45 @@
-# 🚀 GrowEasy AI Importer
+# 🚀 GrowEasy AI Platform
 
-> An AI-powered CSV Importer that intelligently converts CSV files with arbitrary column names into a standardized CRM format using Google Gemini or OpenAI.
+> **An AI-powered CRM Import Platform that intelligently converts CSV files with arbitrary column structures into standardized CRM-ready records using Google Gemini or OpenAI GPT.**
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwind-css)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38BDF8?logo=tailwind-css)
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT-412991?logo=openai)
 ![Google Gemini](https://img.shields.io/badge/Google-Gemini-4285F4?logo=google)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## 📌 Project Overview
+# 🌐 Live Demo
 
-GrowEasy AI Importer is a full-stack AI-powered application that automates CRM data import from CSV files.
+### Frontend
 
-Instead of requiring users to manually map CSV columns, the application uses Large Language Models (Google Gemini or OpenAI GPT) to intelligently understand different CSV structures and convert them into a standardized GrowEasy CRM schema.
+https://groweasy-ai-csv-importer-brown.vercel.app/
 
-The system supports arbitrary column names, different CSV layouts, multiple email addresses, multiple phone numbers, AI-powered field mapping, progress tracking, skipped record detection, and CRM-ready CSV export.
+### Backend API
+
+https://groweasy-ai-csv-importer-hg53.onrender.com/
+
+---
+
+# 📌 Project Overview
+
+GrowEasy AI Platform is a full-stack AI-powered CRM Import Platform that automatically converts CSV files from multiple sources into a standardized CRM format.
+
+Instead of requiring manual column mapping, the platform leverages **Google Gemini** and **OpenAI GPT** to understand arbitrary CSV structures, identify important customer information, extract CRM fields, validate AI responses, skip invalid records, and generate CRM-ready data.
+
+The platform is designed to work with CSV exports from:
+
+- Facebook Leads
+- Google Ads
+- HubSpot
+- Zoho CRM
+- Excel
+- Custom CRM systems
+- Marketing Agencies
+- Real Estate Portals
 
 ---
 
@@ -26,22 +47,25 @@ The system supports arbitrary column names, different CSV layouts, multiple emai
 
 ## 📂 CSV Upload
 
-- Drag & Drop CSV Upload
-- File Browser Upload
+- Drag & Drop Upload
+- File Picker Upload
 - CSV Validation
-- CSV Preview before processing
+- CSV Preview
+- Supports arbitrary CSV structures
 
 ---
 
 ## 🤖 AI Processing
 
-- Intelligent CSV Column Mapping
-- Context-aware Field Extraction
 - Google Gemini Support
 - OpenAI GPT Support
-- Batch Processing
+- Auto Provider Selection
+- Intelligent Field Mapping
 - Parallel AI Workers
-- Live Progress Tracking
+- Batch Processing
+- AI Response Validation
+- Smart Progress Tracking
+- Dynamic Progress Animation
 
 ---
 
@@ -67,82 +91,78 @@ Automatically extracts:
 
 ---
 
-## 🧠 Smart AI Features
+## 🧠 Smart AI Capabilities
 
-- Understands arbitrary CSV headers
-- Infers fields from context
-- Handles multiple emails
+- Understands arbitrary column names
+- Detects context automatically
 - Handles multiple phone numbers
-- Detects CRM status
-- Detects data source
-- Creates CRM Notes automatically
-- Infers Country from phone/address
+- Handles multiple email addresses
+- Infers missing CRM fields
+- Detects CRM Status
+- Generates CRM Notes
+- Never invents missing values
 - Skips invalid records
-- Never invents missing data
+- Produces standardized CRM output
 
 ---
 
 ## 📊 Dashboard
 
-- Upload Status
-- Record Counter
-- AI Provider
+- Workflow Tracker
+- Live Import Status
+- CSV Record Counter
+- AI Provider Display
 - Import Progress
-- Processing Time
+- Processing Timer
 - Import Summary
+- Skipped Record Summary
 
 ---
 
 ## 📑 AI CRM Preview
 
 - Search Records
-- Expandable Record Details
+- Expandable Row Details
 - Responsive Table
 - Status Badges
-- Dark Mode Support
-
----
-
-## 📤 Export
-
-- Export processed CRM records as CSV
-- CRM-ready format
-- Compatible with standard CRM import workflows
+- Export Processed CSV
+- Dark Mode
+- Modern Animations
 
 ---
 
 # 🏗 System Architecture
 
 ```text
-                    CSV Upload
-                         │
-                         ▼
-                 PapaParse (Frontend)
-                         │
-                         ▼
-                Express Backend API
-                         │
-                         ▼
-               CSV Normalization
-                         │
-                         ▼
-               Batch Generation
-                         │
-                         ▼
-          Parallel AI Batch Processing
-          (Gemini / OpenAI GPT)
-                         │
-                         ▼
+                  CSV Upload
+                       │
+                       ▼
+            PapaParse (Frontend)
+                       │
+                       ▼
+              Express REST API
+                       │
+                       ▼
+              CSV Normalization
+                       │
+                       ▼
+              Batch Generation
+                       │
+                       ▼
+       Parallel AI Processing Workers
+      (Google Gemini / OpenAI GPT)
+                       │
+                       ▼
           AI Response Validation
-                         │
-                         ▼
+                       │
+                       ▼
            CRM Record Generation
-                         │
-                         ▼
-          AI CRM Preview Dashboard
-                         │
-                         ▼
-              Export Processed CSV
+                       │
+                       ▼
+            Import Summary
+                       │
+                       ▼
+            CRM-ready CSV Export
 ```
 
 ---
@@ -151,13 +171,13 @@ Automatically extracts:
 
 ## Frontend
 
-- Next.js
-- React
-- Tailwind CSS
+- Next.js 16
+- React 19
+- Tailwind CSS v4
+- Axios
+- PapaParse
 - Framer Motion
 - Lucide React
-- PapaParse
-- Axios
 - Sonner
 
 ---
@@ -168,6 +188,8 @@ Automatically extracts:
 - Express.js
 - Multer
 - CORS
+- Zod
+- CSV Parser
 
 ---
 
@@ -181,27 +203,43 @@ Automatically extracts:
 # 📁 Project Structure
 
 ```
-groweasy-ai-importer
-│
+groweasy-ai-csv-importer
+
 ├── client
 │   ├── src
 │   │   ├── app
 │   │   ├── components
+│   │   ├── context
 │   │   ├── hooks
 │   │   ├── services
-│   │   └── context
+│   │   └── lib
 │
 ├── server
 │   ├── src
+│   │   ├── config
 │   │   ├── controllers
 │   │   ├── middleware
 │   │   ├── prompts
 │   │   ├── routes
 │   │   ├── services
 │   │   ├── validators
-│   │   └── config
+│   │   └── utils
 │
 └── README.md
+```
+
+---
+
+# ⚙ Environment Variables
+
+Create a `.env` file inside the **server** directory.
+
+```env
+PORT=5000
+
+GOOGLE_API_KEY=your_gemini_api_key
+
+OPENAI_API_KEY=your_openai_api_key
 ```
 
 ---
@@ -211,13 +249,13 @@ groweasy-ai-importer
 Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/groweasy-ai-importer.git
+git clone https://github.com/anupamrana200/groweasy-ai-csv-importer.git
 ```
 
-Go into the project
+Move into the project
 
 ```bash
-cd groweasy-ai-importer
+cd groweasy-ai-csv-importer
 ```
 
 ---
@@ -226,6 +264,7 @@ cd groweasy-ai-importer
 
 ```bash
 cd client
+
 npm install
 ```
 
@@ -235,35 +274,23 @@ npm install
 
 ```bash
 cd server
+
 npm install
 ```
 
 ---
 
-# ⚙ Environment Variables
+# ▶ Running Locally
 
-Create a `.env` file inside the **server** folder.
-
-```env
-PORT=5000
-
-GEMINI_API_KEY=your_gemini_api_key
-
-OPENAI_API_KEY=your_openai_api_key
-```
-
----
-
-# ▶ Running the Project
-
-### Backend
+## Backend
 
 ```bash
 cd server
+
 npm run dev
 ```
 
-Backend runs on:
+Runs on
 
 ```
 http://localhost:5000
@@ -271,14 +298,15 @@ http://localhost:5000
 
 ---
 
-### Frontend
+## Frontend
 
 ```bash
 cd client
+
 npm run dev
 ```
 
-Frontend runs on:
+Runs on
 
 ```
 http://localhost:3000
@@ -288,7 +316,7 @@ http://localhost:3000
 
 # 📡 API Endpoints
 
-### Import CSV
+## Import CSV
 
 ```
 POST /api/import
@@ -296,15 +324,7 @@ POST /api/import
 
 ---
 
-### Test AI
-
-```
-POST /api/ai/test
-```
-
----
-
-### Import Progress
+## Import Progress
 
 ```
 GET /api/progress
@@ -312,21 +332,24 @@ GET /api/progress
 
 ---
 
+## Health Check
+
+```
+GET /
+```
+
+---
+
 # 🌙 User Experience
 
-✔ Responsive Design
-
-✔ Light Mode
-
-✔ Dark Mode
-
-✔ Animated Components
-
-✔ Expandable CRM Records
-
-✔ Interactive Dashboard
-
-✔ Modern UI
+- Responsive Design
+- Light Theme
+- Dark Theme
+- Animated Components
+- AI Processing Dashboard
+- Expandable CRM Records
+- Modern UI
+- Mobile Friendly
 
 ---
 
@@ -334,33 +357,31 @@ GET /api/progress
 
 ## Dashboard
 
-> _(Add screenshot after deployment)_
+![Dashboard](./screenshots/dashboard.png)
 
 ---
 
 ## CSV Preview
 
-> _(Add screenshot after deployment)_
-
----
-
-## AI Processing
-
-> _(Add screenshot after deployment)_
+![CSV Preview](./screenshots/csv-preview.png)
 
 ---
 
 ## AI CRM Preview
 
-> _(Add screenshot after deployment)_
+![AI CRM Preview](./screenshots/ai-crm-preview.png)
 
 ---
 
-## Dark Mode
+## Import Summary
 
-> _(Add screenshot after deployment)_
+![Import Summary](./screenshots/import-summary.png)
 
 ---
+
+## Skipped Records
+
+## ![Skipped Records](./screenshots/skipped-records.png)
 
 # 📈 Future Improvements
 
@@ -370,29 +391,46 @@ GET /api/progress
 - AI Confidence Score
 - Excel Export (.xlsx)
 - Editable CRM Records
-- Bulk Retry for Failed Records
+- Import Templates
 - Audit Logs
+- Webhooks
+- Multi-user Workspace
 
 ---
 
 # 👨‍💻 Author
 
-**Anupam Rana**
+## **Anupam Rana**
 
-Computer Science & Engineering
-
+Computer Science & Engineering  
 University of Calcutta
 
-GitHub: https://github.com/anupamrana200
+📧 Email
 
-LinkedIn: https://www.linkedin.com/in/anupam-rana-126143262/
+anupamrana200@gmail.com
+
+📱 Mobile
+
++91 7063631178
+
+🌐 GitHub
+
+https://github.com/anupamrana200
+
+💼 LinkedIn
+
+https://www.linkedin.com/in/anupam-rana-126143262/
+
+---
+
+# ⭐ Support
+
+If you found this project helpful, please consider giving it a ⭐ on GitHub.
+
+It helps others discover the project and motivates future improvements.
 
 ---
 
 # 📄 License
 
-This project is licensed under the MIT License.
-
----
-
-⭐ If you found this project helpful, consider giving it a star.
+This project is licensed under the **MIT License**.
