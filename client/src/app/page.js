@@ -33,6 +33,9 @@ export default function Home() {
     isImporting,
 
     crmRecords,
+    skippedRecords,
+    summary,
+
     importResult,
 
     resetImport,
@@ -100,7 +103,10 @@ export default function Home() {
                 parsedData={parsedData}
                 headers={headers}
                 isParsing={isParsing}
+
                 crmRecords={crmRecords}
+                skippedRecords={skippedRecords}
+                summary={summary}
               />
             </Section>
 
@@ -116,10 +122,13 @@ export default function Home() {
             </Section>
 
           </main>
+
         </div>
 
       </PageContainer>
+
       <Footer />
+
     </MainLayout>
   );
 }

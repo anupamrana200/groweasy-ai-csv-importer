@@ -90,11 +90,50 @@ const processAllBatches = async ({
       workers.push(worker(i));
     }
 
-    await Promise.all(workers);
+      await Promise.all(workers);
 
-    completeProgress();
+      const allRecords = batchResults.flat();
 
-    return batchResults.flat();
+      const crmRecords = [];
+      const skippedRecords = [];
+
+      for (const record of allRecords) {
+        const hasEmail =
+          record.email &&
+          record.email.trim() !== "";
+
+        const hasMobile =
+          record.mobile_without_country_code &&
+          record.mobile_without_country_code.trim() !== "";
+
+        if (!hasEmail && !hasMobile) {
+          skippedRecords.push({
+            rowId: record._meta?.rowId ?? null,
+            name: record.name || "",
+            reason: "No email or mobile number found",
+            originalRecord: record,
+          });
+
+          continue;
+        }
+
+        crmRecords.push(record);
+      }
+
+      const summary = {
+        totalRows: allRecords.length,
+        totalImported: crmRecords.length,
+        totalSkipped: skippedRecords.length,
+        provider,
+      };
+
+      completeProgress();
+
+      return {
+        summary,
+        crmRecords,
+        skippedRecords,
+      };
 
   } catch (error) {
 

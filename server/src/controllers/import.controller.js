@@ -41,7 +41,7 @@ exports.importCsv = async (req, res) => {
     // Process only the first batch (for now)
     console.time("Total AI Processing");
 
-    const allCrmRecords =
+    const result =
       await processAllBatches({
         batches,
         analysis,
@@ -50,13 +50,17 @@ exports.importCsv = async (req, res) => {
 
     console.timeEnd("Total AI Processing");
 
-  return res.status(200).json({
-    success: true,
-    provider: "auto",
-    totalRecords: allCrmRecords.length,
-    totalBatches: batches.length,
-    crmRecords: allCrmRecords,
-  });
+    return res.status(200).json({
+      success: true,
+      provider: result.summary.provider,
+      totalBatches: batches.length,
+
+      summary: result.summary,
+
+      crmRecords: result.crmRecords,
+
+      skippedRecords: result.skippedRecords,
+    });
 
   } catch (error) {
 

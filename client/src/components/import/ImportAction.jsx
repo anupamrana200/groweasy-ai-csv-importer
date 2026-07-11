@@ -75,15 +75,20 @@ export default function ImportAction({
 
           <StatCard
             icon={<Database />}
-            label="Records"
-            value={importResult.totalRecords}
+            label="Imported"
+            value={importResult.summary?.totalImported ?? 0}
             color="text-blue-600"
           />
 
           <StatCard
             icon={<BrainCircuit />}
             label="Provider"
-            value={importResult.provider || "Auto"}
+            value={
+              importResult.provider
+                ? importResult.provider.charAt(0).toUpperCase() +
+                  importResult.provider.slice(1)
+                : "Auto"
+            }
             color="text-violet-600"
           />
 
@@ -161,34 +166,23 @@ export default function ImportAction({
             disabled={!hasData}
             className="
               rounded-xl
-
               border
               border-slate-300
-
               bg-white
-
               px-4
               py-3
-
               text-sm
               font-medium
-
               text-slate-800
-
               shadow-sm
-
               outline-none
-
               transition-all
               duration-200
-
               focus:border-blue-500
               focus:ring-2
               focus:ring-blue-200
-
               disabled:bg-slate-100
               disabled:text-slate-400
-
               dark:border-slate-700
               dark:bg-slate-900
               dark:text-slate-100

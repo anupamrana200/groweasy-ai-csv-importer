@@ -6,6 +6,9 @@ import SectionTitle from "../ui/SectionTitle";
 import PreviewTable from "../preview/PreviewTable";
 import CRMTable from "../results/CRMTable";
 
+import ImportSummary from "../results/ImportSummary";
+import SkippedRecordsTable from "../results/SkippedRecordsTable";
+
 import EmptyState from "../ui/EmptyState";
 import LoadingSkeleton from "../ui/LoadingSkeleton";
 
@@ -15,8 +18,15 @@ export default function PreviewSection({
   parsedData,
   headers,
   isParsing,
+
   crmRecords,
+  summary,
+  skippedRecords,
 }) {
+  // ==========================================
+  // Loading
+  // ==========================================
+
   if (isParsing) {
     return (
       <Card hover>
@@ -32,6 +42,10 @@ export default function PreviewSection({
       </Card>
     );
   }
+
+  // ==========================================
+  // Empty
+  // ==========================================
 
   if (!parsedData.length) {
     return (
@@ -50,8 +64,14 @@ export default function PreviewSection({
     );
   }
 
+  // ==========================================
+  // Content
+  // ==========================================
+
   return (
     <div className="space-y-8">
+
+      {/* CSV Preview */}
 
       <Card hover>
 
@@ -79,6 +99,8 @@ export default function PreviewSection({
 
       </Card>
 
+      {/* AI CRM Preview */}
+
       {crmRecords.length > 0 && (
 
         <Card hover>
@@ -94,6 +116,20 @@ export default function PreviewSection({
 
         </Card>
 
+      )}
+
+      {/* Import Summary */}
+
+      {summary && (
+        <ImportSummary summary={summary} />
+      )}
+
+      {/* Skipped Records */}
+
+      {skippedRecords?.length > 0 && (
+        <SkippedRecordsTable
+          records={skippedRecords}
+        />
       )}
 
     </div>
