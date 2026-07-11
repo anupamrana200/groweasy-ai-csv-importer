@@ -21,6 +21,10 @@ const processBatch = async (
     // AI request
     const aiResult = await runAI(prompt, provider);
 
+    console.log("========== RAW AI RESPONSE ==========");
+    console.log(aiResult.response);
+    console.log("====================================");
+
     // Validate response
     const crmRecords = validateBatchResponse(
       aiResult.response,
