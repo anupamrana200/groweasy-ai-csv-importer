@@ -40,7 +40,7 @@ export default function ProgressCard({ progress }) {
               </h2>
 
               <p className="text-sm text-slate-500 dark:text-slate-400">
-                Your CSV is being converted into CRM-ready records.
+                {progress?.displayMessage || "Preparing AI..."}
               </p>
 
             </div>

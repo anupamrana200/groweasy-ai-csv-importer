@@ -18,10 +18,22 @@ export default function QuickStats({
   const status = importResult
     ? "Completed"
     : isImporting
-    ? "Processing"
+    ? "Running"
     : selectedFile
     ? "Ready"
     : "Idle";
+
+  const importStatus = importResult
+    ? "Completed"
+    : isImporting
+    ? "Running"
+    : "Waiting";
+
+  const importColor = importResult
+    ? "text-green-600"
+    : isImporting
+    ? "text-blue-600"
+    : "text-amber-600";
 
   return (
     <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -50,8 +62,8 @@ export default function QuickStats({
       <StatCard
         icon={<Clock3 />}
         label="Import"
-        value={isImporting ? "Running" : "Waiting"}
-        color="text-amber-600"
+        value={importStatus}
+        color={importColor}
       />
 
     </div>
